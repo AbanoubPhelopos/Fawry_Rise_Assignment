@@ -1,4 +1,4 @@
-# E-Commerce System 
+# E-Commerce System
 
 A comprehensive e-commerce system built in Java that demonstrates all SOLID principles and good Object-Oriented Programming (OOP) design patterns. This project showcases a clean, maintainable, and extensible architecture for handling products, customers, shopping carts, and checkout processes.
 
@@ -39,36 +39,41 @@ A comprehensive e-commerce system built in Java that demonstrates all SOLID prin
 - High-level modules depend on abstractions (interfaces)
 - `CheckoutService` depends on `PaymentProcessor` interface, not concrete implementations
 
-## 📁 Project Structure
+## Project Structure
+
+```text
 FawryAssignment/
 ├── src/
-│ └── com/
-│ └── ecommerce/
-│ ├── ECommerceApp.java # Main application entry point
-│ ├── interfaces/
-│ │ ├── Expirable.java # Interface for expirable products
-│ │ ├── Shippable.java # Interface for shippable products
-│ │ └── PaymentProcessor.java # Interface for payment processing
-│ ├── models/
-│ │ ├── Product.java # Abstract base product class
-│ │ ├── ExpirableProduct.java # Expirable and shippable products
-│ │ ├── NonExpirableShippableProduct.java # Non-expirable shippable products
-│ │ ├── NonShippableProduct.java # Digital/non-shippable products
-│ │ ├── CartItem.java # Cart item representation
-│ │ └── Customer.java # Customer with payment capabilities
-│ └── services/
-│ ├── Cart.java # Shopping cart service
-│ ├── CheckoutService.java # Checkout processing service
-│ └── ShippingService.java # Shipping calculation service
-└── bin/ # Compiled class files
+│   └── com/
+│       └── ecommerce/
+│           ├── ECommerceApp.java                    # Main application entry point
+│           ├── interfaces/
+│           │   ├── Expirable.java                   # Interface for expirable products
+│           │   ├── Shippable.java                   # Interface for shippable products
+│           │   └── PaymentProcessor.java            # Interface for payment processing
+│           ├── models/
+│           │   ├── Product.java                     # Abstract base product class
+│           │   ├── ExpirableProduct.java            # Expirable and shippable products
+│           │   ├── NonExpirableShippableProduct.java # Non-expirable shippable products
+│           │   ├── NonShippableProduct.java         # Digital/non-shippable products
+│           │   ├── CartItem.java                    # Cart item representation
+│           │   └── Customer.java                    # Customer with payment capabilities
+│           └── services/
+│               ├── Cart.java                        # Shopping cart service
+│               ├── CheckoutService.java             # Checkout processing service
+│               └── ShippingService.java             # Shipping calculation service
+└── bin/                                             # Compiled class files
+```
+
 
 ## 📋 Usage Example
 
 The main application demonstrates a complete e-commerce workflow:
 
+```java
 // Create products
-Product cheese = new ExpirableProduct("Cheese", 100.0, 10,
-LocalDate.now().plusDays(30), 0.2);
+Product cheese = new ExpirableProduct("Cheese", 100.0, 10, 
+    LocalDate.now().plusDays(30), 0.2);
 Product tv = new NonExpirableShippableProduct("TV", 500.0, 5, 15.0);
 Product scratchCard = new NonShippableProduct("ScratchCard", 50.0, 20);
 
@@ -83,8 +88,10 @@ cart.add(scratchCard, 1);
 
 CheckoutService checkoutService = new CheckoutService(new ShippingService());
 checkoutService.checkout(customer, cart);
+```
 
 ## 📊 Sample Output
+```text
 Customer balance before checkout: $1000.0
 
 ** Shipment notice **
@@ -92,7 +99,7 @@ Customer balance before checkout: $1000.0
 1x Cheese 200g
 1x Biscuits 700g
 1x TV 15000g
-Total package weight 16.1kg
+Total package weight: 16.1kg
 
 ** Checkout receipt **
 2x Cheese 200
@@ -104,6 +111,5 @@ Shipping 30
 Amount 930
 
 Customer balance after checkout: $70.0
-
-
+```
 
